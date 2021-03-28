@@ -1,0 +1,28 @@
+{
+    "name": "devopsteam/modular",
+    "description": "Devopsteam.ir modular development system based on laravel (private)",
+    "authors": [{
+        "name": "arashrasoulzadeh",
+        "email": "arashrasoulzadeh@gmail.com"
+    }],
+    "autoload": {
+        "psr-4": {
+            "devopsteam\\modular\\": "src/",
+            "Modules\\": "/../../../Modules/"
+
+        }
+    },
+    "require": {
+        "nwidart/laravel-modules": "*",
+        "guzzlehttp/guzzle": "*",
+        "czproject/git-php": "*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "devopsteam\\modular\\ServiceProvider\\ModularServiceProvider"
+            ]
+        }
+    }
+
+}
