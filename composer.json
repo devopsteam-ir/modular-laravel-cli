@@ -7,9 +7,7 @@
     }],
     "autoload": {
         "psr-4": {
-            "devopsteam\\modular\\": "src/",
-            "Modules\\": "/../../../Modules/"
-
+            "devopsteam\\modular\\": "src/"
         }
     },
     "require": {
