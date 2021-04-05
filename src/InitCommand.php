@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 
 class InitCommand extends Command
 {
-    protected $signature = "devopsteam:init";
+    protected $signature = "modular:init";
 
     protected $name = "initialize command";
 
