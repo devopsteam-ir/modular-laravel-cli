@@ -4,6 +4,7 @@ namespace devopsteam\modular;
 
 use Cz\Git\GitRepository;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class PushCommand extends Command
 {
@@ -22,10 +23,24 @@ class PushCommand extends Command
     {
         return scandir($this->modules_path);
     }
+
+    private function cleanChangesText($text)
+    {
+        $cleaned_text = "";
+        foreach ($text as $line) {
+            if (Str::contains($line, 'added') || Str::contains($line, 'deleted') || Str::contains($line, 'modified')) {
+                if (!Str::contains($line, 'changes added'))
+                    $cleaned_text .= $line . "\n";
+            }
+        }
+        return $cleaned_text;
+    }
     private function checkCommit(string $path)
     {
         $repo_path = $this->modules_path . "/" . $path;
         $repo = new GitRepository($repo_path);
+        $status = $repo->execute("status");
+        $this->line($this->cleanChangesText($status));
         $should_commit = $this->confirm('Commit Changes?');
         if ($should_commit) {
             $repo->addAllChanges();
