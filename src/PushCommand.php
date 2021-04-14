@@ -15,6 +15,7 @@ class PushCommand extends Command
     public function __construct()
     {
         parent::__construct();
+        $this->project_path = base_path();
         $this->modules_path = $this->project_path . "/Modules";
     }
 
