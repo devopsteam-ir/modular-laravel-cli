@@ -3,6 +3,7 @@
 namespace devopsteam\modular;
 
 use Cz\Git\GitRepository;
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
@@ -67,8 +68,13 @@ class PushCommand extends Command
     {
         $modules = $this->getModules();
         foreach ($modules as $path) {
-            if ($path != "." && $path != "..")
-                $this->checkModule($path);
+            try {
+                if ($path != "." && $path != "..") {
+                    $this->checkModule($path);
+                }
+            } catch (Exception $err) {
+                $this->error("cannot check " . $path);
+            }
         }
     }
 }
