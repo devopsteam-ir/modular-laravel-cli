@@ -1,20 +1,21 @@
 <?php
 
-namespace devopsteam\modular\ServiceProvider;
+    namespace devopsteam\modular\ServiceProvider;
 
-use devopsteam\modular\InitCommand;
-use devopsteam\modular\PushCommand;
-use Illuminate\Support\ServiceProvider as SupportServiceProvider;
+    use devopsteam\modular\InitCommand;
+    use devopsteam\modular\PushCommand;
+    use Illuminate\Support\ServiceProvider as SupportServiceProvider;
 
-class ModularServiceProvider extends SupportServiceProvider
-{
-    public function boot()
+    class ModularServiceProvider extends SupportServiceProvider
     {
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                InitCommand::class,
-                PushCommand::class
-            ]);
+        public function boot()
+        {
+            if ( $this->app->runningInConsole() )
+            {
+                $this->commands( [
+                                     InitCommand::class,
+                                     PushCommand::class,
+                                 ] );
+            }
         }
     }
-}

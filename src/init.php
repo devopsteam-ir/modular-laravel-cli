@@ -1,11 +1,11 @@
 <?php
 
-namespace devopsteam\modular;
+    namespace devopsteam\modular;
 
-class Index
-{
-    public function greet($greet = "Hello World")
+    class Index
     {
-        return $greet;
+        public function greet( $greet = "Hello World" )
+        {
+            return $greet;
+        }
     }
-}
