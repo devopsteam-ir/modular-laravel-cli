@@ -56,21 +56,10 @@
             }
 
             // $this->line(scandir($this->project_path));
-            $clone_or_pull = $this->cloneOrPull( $name );
             $repo_path = $this->modules_path . "/" . $name;
-            if ( $clone_or_pull )
-            {
-                #exists , just pull updates
-                $this->line( "updating repository..." );
-                $repo = new GitRepository( $repo_path );
-                $repo->pull();
-            }
-            else
-            {
-                #need to clone
-                $this->line( "clonning repository..." );
-                $repo = GitRepository::cloneRepository( $path, $repo_path );
-            }
+            $this->line( "updating repository..." );
+            $repo = new GitRepository( $repo_path );
+            $repo->pull();
         }
 
         private function cloneOrPull( $name ) : bool
