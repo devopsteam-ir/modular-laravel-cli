@@ -2,8 +2,8 @@
 
 namespace devopsteam\modular;
 
-use Cz\Git\GitRepository;
-use Illuminate\Console\Command;
+ use CzProject\GitPhp\GitRepository;
+ use Illuminate\Console\Command;
 
 class InitCommand extends Command
 {
@@ -42,7 +42,9 @@ class InitCommand extends Command
         $this->line("getting \033[33m" . $name . "\033[37m from "  . $path . "...");
 
         if (!file_exists($this->modules_path)) {
-            mkdir($this->modules_path);
+            if (!mkdir($concurrentDirectory = $this->modules_path) && !is_dir($concurrentDirectory)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+            }
         }
 
         // $this->line(scandir($this->project_path));

@@ -13,7 +13,7 @@
     "require": {
         "nwidart/laravel-modules": "*",
         "guzzlehttp/guzzle": "*",
-        "czproject/git-php": "*"
+        "czproject/git-php": "^4.0"
     },
     "extra": {
         "laravel": {
