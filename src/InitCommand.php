@@ -2,7 +2,7 @@
 
     namespace devopsteam\modular;
 
-    use CzProject\GitPhp\GitRepository;
+    use CzProject\GitPhp\Git;
     use Illuminate\Console\Command;
 
     class InitCommand extends Command
@@ -55,11 +55,19 @@
                 }
             }
 
-            // $this->line(scandir($this->project_path));
+            $git = new Git();
             $repo_path = $this->modules_path . "/" . $name;
-            $this->line( "updating repository..." );
-            $repo = new GitRepository( $repo_path );
-            $repo->pull();
+            if ( $this->cloneOrPull( $repo_path ) )
+            {
+                $repo = $git->open( $repo_path );
+                $this->line( "updating repository..." . $path );
+                $repo->pull();
+            }
+            else
+            {
+                $this->line( "cloning repository..." . $path );
+                $repo = $git->cloneRepository( $path, $repo_path );
+            }
         }
 
         private function cloneOrPull( $name ) : bool
