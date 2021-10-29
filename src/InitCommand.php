@@ -57,7 +57,7 @@
 
             $git = new Git();
             $repo_path = $this->modules_path . "/" . $name;
-            if ( $this->cloneOrPull( $repo_path ) )
+            if ( $this->cloneOrPull( $name ) )
             {
                 $repo = $git->open( $repo_path );
                 $this->line( "updating repository..." . $path );
