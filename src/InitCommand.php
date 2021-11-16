@@ -74,7 +74,7 @@ class InitCommand extends Command
         if ( $this->cloneOrPull( $name ) )
         {
             $repo = $git->open( $repo_path );
-            $this->line( "  \033[92m -> " . $repo->getLastCommit()->getSubject() . ' from ' . $repo->getLastCommit()->getCommitterName() );
+            $this->line( "  \033[92m" . $repo->getLastCommit()->getSubject() . " \033[93m" . $repo->getLastCommit()->getCommitterName() . "\033[36m " . $repo->getLastCommit()->getId() );
             $repo->pull();
         }
         else
