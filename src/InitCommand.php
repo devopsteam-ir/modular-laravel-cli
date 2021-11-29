@@ -45,7 +45,7 @@ class InitCommand extends Command
     private function getModules()
     {
         $client   = new \GuzzleHttp\Client();
-        $response = $client->request( 'GET' , 'https://gitlab.geevserver.com/arash/modular/-/raw/master/modules.json' );
+        $response = $client->request( 'GET' , 'https://git.dyneemadev.com/arash/modular/-/raw/master/modules.json' );
         if ( $response->getStatusCode() == 200 )
         {
         }
